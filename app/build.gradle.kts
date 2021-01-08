@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("androidx.navigation.safeargs.kotlin")
+
+    id("com.apollographql.apollo").version("2.4.6")
 }
 
 android {
@@ -46,7 +48,21 @@ dependencies {
     implementation("com.google.android.material:material:1.1.0")
     implementation("androidx.security:security-crypto:1.0.0-rc02")
 
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21")
+    implementation("com.apollographql.apollo:apollo-runtime:2.4.6")
+    implementation("com.apollographql.apollo:apollo-coroutines-support:2.4.6")
+
+    // Koin for Kotlin
+    val koin_version="2.2.2"
+    implementation("org.koin:koin-core:$koin_version")
+    // Koin AndroidX Scope features
+    implementation("org.koin:koin-androidx-scope:$koin_version")
+
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+}
+
+apollo {
+    generateKotlinModels.set(true)
 }
